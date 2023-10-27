@@ -28,7 +28,7 @@ public class BaseTests {
         browser = Playwright
                 .create()
                 .chromium()
-                .launch(new BrowserType.LaunchOptions().setHeadless(false));
+                .launch(new BrowserType.LaunchOptions().setHeadless(true));
 
         //A single browser tab
         Page page = browser.newPage();
