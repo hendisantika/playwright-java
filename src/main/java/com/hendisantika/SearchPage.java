@@ -2,6 +2,9 @@ package com.hendisantika;
 
 import com.microsoft.playwright.Page;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.microsoft.playwright.options.WaitForSelectorState.ATTACHED;
 import static com.microsoft.playwright.options.WaitForSelectorState.DETACHED;
 
@@ -31,18 +34,25 @@ public class SearchPage {
         clearSearchBar();
         page.fill(locator_searchBar, query);
 
-        var expectedState = new Page.WaitForSelectorOptions().withState(ATTACHED);
+        var expectedState = new Page.WaitForSelectorOptions().setState(ATTACHED);
         page.waitForSelector(locator_hiddenBooks, expectedState);
     }
 
     public void clearSearchBar() {
         page.fill(locator_searchBar, "");
 
-        var expectedState = new Page.WaitForSelectorOptions().withState(DETACHED);
+        var expectedState = new Page.WaitForSelectorOptions().setState(DETACHED);
         page.waitForSelector(locator_hiddenBooks, expectedState);
     }
 
     public int getNumberOfVisibleBooks() {
         return page.querySelectorAll(locator_visibleBooks).size();
+    }
+
+    public List<String> getVisibleBooks() {
+        return page.querySelectorAll(locator_visibleBookTitles)
+                .stream()
+                .map(e -> e.innerText())
+                .collect(Collectors.toList());
     }
 }
