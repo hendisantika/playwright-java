@@ -54,4 +54,44 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>playwright/isqa/cucumberrunner/QuickSearchRunner.java</include>
+          </includes>
+          <testFailureIgnore>true</testFailureIgnore>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>net.masterthought</groupId>
+        <artifactId>maven-cucumber-reporting</artifactId>
+        <version>5.7.6</version>
+        <executions>
+          <execution>
+            <id>execution</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <projectName>cucumber-jvm-example</projectName>
+              <inputDirectory>${project.build.directory}/cucumber-result/json</inputDirectory>
+              <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
+              <jsonFiles>
+                <!-- supports wildcard or name pattern -->
+                <param>*.json</param>
+              </jsonFiles>
+              <checkBuildResult>true</checkBuildResult>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>
