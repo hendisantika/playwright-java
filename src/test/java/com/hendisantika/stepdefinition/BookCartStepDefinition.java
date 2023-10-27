@@ -4,6 +4,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.AriaRole;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,5 +31,13 @@ public class BookCartStepDefinition {
         page.getByLabel("Password").fill("Pass1234$");
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions()
                 .setName("Login")).last().click();
+    }
+
+    @When("user searches for a {string} book")
+    public void userSearchesForABook(String bookTitle) throws InterruptedException {
+        Thread.sleep(1000);
+        page.getByPlaceholder("Search books", new Page.GetByPlaceholderOptions()
+                .setExact(false)).type(bookTitle);
+        page.getByRole(AriaRole.OPTION).first().click();
     }
 }
