@@ -23,4 +23,12 @@ public class SearchPage {
     public SearchPage(Page page) {
         this.page = page;
     }
+
+    public void search(String query) {
+        clearSearchBar();
+        page.fill(locator_searchBar, query);
+
+        var expectedState = new Page.WaitForSelectorOptions().withState(ATTACHED);
+        page.waitForSelector(locator_hiddenBooks, expectedState);
+    }
 }
