@@ -4,10 +4,14 @@ import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.AriaRole;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Before;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.assertTrue;
 
@@ -61,5 +65,13 @@ public class BookCartStepDefinition {
         playwright = Playwright.create();
         BrowserType.LaunchOptions setHeadless = new BrowserType.LaunchOptions().setHeadless(false);
         page = playwright.chromium().launch(setHeadless).newPage();
+    }
+
+    @After
+    public void after() {
+        Path screenshotPath = Paths.get(System.currentTimeMillis() + ".jpg");
+        page.screenshot(new Page.ScreenshotOptions().setPath(screenshotPath));
+        //close browsers and playwright instances
+        playwright.close();
     }
 }
