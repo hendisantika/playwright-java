@@ -2,6 +2,9 @@ package com.hendisantika;
 
 import com.microsoft.playwright.Page;
 
+import static com.microsoft.playwright.options.WaitForSelectorState.ATTACHED;
+import static com.microsoft.playwright.options.WaitForSelectorState.DETACHED;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : playwright-java
@@ -29,6 +32,13 @@ public class SearchPage {
         page.fill(locator_searchBar, query);
 
         var expectedState = new Page.WaitForSelectorOptions().withState(ATTACHED);
+        page.waitForSelector(locator_hiddenBooks, expectedState);
+    }
+
+    public void clearSearchBar() {
+        page.fill(locator_searchBar, "");
+
+        var expectedState = new Page.WaitForSelectorOptions().withState(DETACHED);
         page.waitForSelector(locator_hiddenBooks, expectedState);
     }
 }
