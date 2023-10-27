@@ -1,11 +1,13 @@
 package com.hendisantika.stepdefinition;
 
+import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.AriaRole;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Before;
 
 import static org.junit.Assert.assertTrue;
 
@@ -51,5 +53,13 @@ public class BookCartStepDefinition {
                 page.locator("//app-book-card[.//strong[text()='" + bookTitle + "']]")
                         .isVisible()
         );
+    }
+
+    @Before
+    public void before() {
+        // create playwright and browser instances
+        playwright = Playwright.create();
+        BrowserType.LaunchOptions setHeadless = new BrowserType.LaunchOptions().setHeadless(false);
+        page = playwright.chromium().launch(setHeadless).newPage();
     }
 }
