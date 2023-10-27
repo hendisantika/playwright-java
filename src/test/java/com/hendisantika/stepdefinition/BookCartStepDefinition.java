@@ -4,7 +4,10 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.AriaRole;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by IntelliJ IDEA.
@@ -39,5 +42,14 @@ public class BookCartStepDefinition {
         page.getByPlaceholder("Search books", new Page.GetByPlaceholderOptions()
                 .setExact(false)).type(bookTitle);
         page.getByRole(AriaRole.OPTION).first().click();
+    }
+
+
+    @Then("user find {string} on the search result")
+    public void userFindOnTheSearchResult(String bookTitle) {
+        assertTrue(
+                page.locator("//app-book-card[.//strong[text()='" + bookTitle + "']]")
+                        .isVisible()
+        );
     }
 }
