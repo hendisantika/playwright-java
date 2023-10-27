@@ -41,4 +41,8 @@ public class SearchPage {
         var expectedState = new Page.WaitForSelectorOptions().withState(DETACHED);
         page.waitForSelector(locator_hiddenBooks, expectedState);
     }
+
+    public int getNumberOfVisibleBooks() {
+        return page.querySelectorAll(locator_visibleBooks).size();
+    }
 }
