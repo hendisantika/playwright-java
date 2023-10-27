@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
  * To change this template use File | Settings | File Templates.
  */
 @RunWith(Cucumber.class)
-@CucumberOptions(glue = {"playwright.hendisantika.stepdefinition"}
+@CucumberOptions(glue = {"com.hendisantika.stepdefinition"}
         , features = {"src/test/resources/features/QuickSearch.feature"}
         , plugin = "json:target/cucumber-result/json/QuickSearch.json"
 )
