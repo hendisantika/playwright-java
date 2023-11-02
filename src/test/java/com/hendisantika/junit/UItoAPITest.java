@@ -5,6 +5,9 @@ import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.RequestOptions;
 import org.junit.Test;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : playwright-java
@@ -29,8 +32,8 @@ public class UItoAPITest {
         page.navigate("https://www.jakmall.com/login");
 
         //run the login automation
-        page.getByLabel("Email").fill("alvin.citaka@gmail.com");
-        page.getByLabel("Password").fill("ok354123");
+        page.getByLabel("Email").fill("hendisantika@yahoo.co.id");
+        page.getByLabel("Password").fill("Naruto2023!");
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions()
                 .setName("Login")).last().click();
 
@@ -39,9 +42,27 @@ public class UItoAPITest {
                         .setHeader("x-requested-with", "XMLHttpRequest")
         );
 
+        System.out.println("======================");
         System.out.println(response.text());
+        System.out.println("Ada lho ...!");
+        System.out.println("======================");
 
         //close browsers and playwright instances
+        Path screenshotPath = Paths.get("TEST CASE 3_" + System.currentTimeMillis() + ".jpg");
+        page.screenshot(new Page.ScreenshotOptions().setPath(screenshotPath));
+
+// Start tracing before creating / navigating a page.
+        browserContext.tracing().start(new Tracing.StartOptions()
+                .setScreenshots(true)
+                .setSnapshots(true)
+                .setSources(true));
+
+        page.navigate("https://playwright.dev");
+
+// Stop tracing and export it into a zip archive.
+        browserContext.tracing().stop(new Tracing.StopOptions()
+                .setPath(Paths.get("trace.zip")));
+
         playwright.close();
 
     }
