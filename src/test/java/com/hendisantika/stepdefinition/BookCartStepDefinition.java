@@ -36,8 +36,8 @@ public class BookCartStepDefinition {
 
         //run the automation
         page.getByText("Login").click();
-        page.getByLabel("Username").fill("ortoni");
-        page.getByLabel("Password").fill("Pass1234$");
+        page.getByLabel("Username").fill("yuji");
+        page.getByLabel("Password").fill("Yuji2023!");
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions()
                 .setName("Login")).last().click();
     }
