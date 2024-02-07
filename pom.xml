@@ -17,31 +17,31 @@
     <dependency>
       <groupId>com.microsoft.playwright</groupId>
       <artifactId>playwright</artifactId>
-      <version>1.39.0</version>
+      <version>1.41.2</version>
     </dependency>
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-junit</artifactId>
-      <version>7.14.0</version>
+      <version>7.15.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-java</artifactId>
-      <version>7.14.0</version>
+      <version>7.15.0</version>
       <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.10.0</version>
+      <version>5.10.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>net.masterthought</groupId>
       <artifactId>maven-cucumber-reporting</artifactId>
-      <version>5.7.6</version>
+      <version>5.7.8</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.plugins</groupId>
@@ -51,7 +51,7 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>7.8.0</version>
+      <version>7.9.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
