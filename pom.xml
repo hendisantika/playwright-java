@@ -65,6 +65,7 @@
         <configuration>
           <includes>
             <include>com/hendisantika/cucumber/QuickSearchRunner.java</include>
+            <include>com/hendisantika/cucumber/QuickLookupRunner.java</include>
           </includes>
           <testFailureIgnore>true</testFailureIgnore>
         </configuration>

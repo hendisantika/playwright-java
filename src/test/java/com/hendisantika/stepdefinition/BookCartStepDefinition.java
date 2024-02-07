@@ -29,6 +29,23 @@ public class BookCartStepDefinition {
     private Page page;
     private Playwright playwright;
 
+    @Before
+    public void before() {
+        // create playwright and browser instances
+        playwright = Playwright.create();
+        BrowserType.LaunchOptions setHeadless = new BrowserType.LaunchOptions().setHeadless(false);
+        page = playwright.chromium().launch(setHeadless).newPage();
+    }
+
+    @After
+    public void after() {
+        Path screenshotPath = Paths.get(System.currentTimeMillis() + ".jpg");
+        page.screenshot(new Page.ScreenshotOptions().setPath(screenshotPath));
+        //close browsers and playwright instances
+        page.close();
+        playwright.close();
+    }
+
     @Given("user already logged in")
     public void userAlreadyLoggedIn() {
         //navigate to application
@@ -59,19 +76,5 @@ public class BookCartStepDefinition {
         );
     }
 
-    @Before
-    public void before() {
-        // create playwright and browser instances
-        playwright = Playwright.create();
-        BrowserType.LaunchOptions setHeadless = new BrowserType.LaunchOptions().setHeadless(false);
-        page = playwright.chromium().launch(setHeadless).newPage();
-    }
 
-    @After
-    public void after() {
-        Path screenshotPath = Paths.get(System.currentTimeMillis() + ".jpg");
-        page.screenshot(new Page.ScreenshotOptions().setPath(screenshotPath));
-        //close browsers and playwright instances
-        playwright.close();
-    }
 }
